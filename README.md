@@ -6,11 +6,9 @@ v.1.0.1-20250413
 
 ### Programming with Actors - Basics (continued from Lab #07)
 
-- Examples using Akka framework in Java 
-    - `pcd.lab08.actors`
-    - step-by-step examples using an OOP style   
-- Implemention of "The exchanging values problem" 
-    - example presented in `module-3.1`
+- Examples using Akka framework in Java (`pcd.lab08.actors`)
+    - OOP actor-centered (vs. behaviour-centered) style    
+- Implemention of "The exchanging values problem" (`module-3.1`)
     - actor-based symmetric solution
      
 ### Synchronous Message Passing with Go
