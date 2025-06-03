@@ -11,7 +11,8 @@ public class HelloWorldActor extends AbstractActor {
 	
 	public Receive createReceive() {
 		return receiveBuilder()
-				.match(SayHello.class, this::onSayHello)
+				.match(SayHello.class, this::onSayHello) // se il messaggio in arrivo è un'istanza di SayHello,
+				// allora invoco il metodo onSayHello su questo attore
 	            .build();
 	}
 
@@ -19,6 +20,6 @@ public class HelloWorldActor extends AbstractActor {
 	
 	private void onSayHello(SayHello msg) {
  	   helloCounter++;
- 	   System.out.println("Hello " + msg.content() + " from " + this.getContext().getSelf() + " - count " + helloCounter);	
+ 	   System.out.println("Hello " + msg.content() + " from " + this.getContext().getSelf() + " - count " + helloCounter);
 	}
 }

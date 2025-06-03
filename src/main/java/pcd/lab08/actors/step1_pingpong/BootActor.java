@@ -21,5 +21,5 @@ public class BootActor extends AbstractActor {
 
 	/* messages */
 	
-	static public class BootMsg {}
+	public static class BootMsg {}
 }
