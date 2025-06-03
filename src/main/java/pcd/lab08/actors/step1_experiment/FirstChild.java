@@ -26,5 +26,7 @@ public class FirstChild extends AbstractActor {
         System.out.println("[" + Thread.currentThread().getName() + "]: log in FirstChild.java ---> " + msg);
     }
 
-    public static class ChildMsgWithoutArgument {}
+    //public static class ChildMsgWithoutArgument {}
+    public static record ChildMsgWithoutArgument() {}
+
 }
