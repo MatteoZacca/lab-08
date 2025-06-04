@@ -14,10 +14,12 @@ import akka.actor.ActorRef;
 public class ViewFrame extends JFrame {
 
 	public ViewFrame(ActorRef actorView) {
-		super(".:: Test Swing | Actors interaction ::.");
+		super("Test Swing | Actors interaction");
+		log("[" + Thread.currentThread().getName() + "]: entered in ViewFrame's constructor");
 		setSize(400, 70);
 		JButton button = new JButton("Press me");
 		button.addActionListener((ActionEvent ev) -> {
+			log("[" + Thread.currentThread().getName() + "]: pressed button");
 			actorView.tell(new PressedMsg(), ActorRef.noSender());
 		});
 		JPanel panel = new JPanel();
@@ -35,5 +37,9 @@ public class ViewFrame extends JFrame {
 		SwingUtilities.invokeLater(() -> {
 			this.setVisible(true);
 		});
+	}
+
+	private static void log (String msg) {
+		System.out.println("Debug in [ViewFrame] ---> " + msg);
 	}
 }

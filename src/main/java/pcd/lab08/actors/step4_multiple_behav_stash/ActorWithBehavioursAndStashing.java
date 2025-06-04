@@ -1,6 +1,7 @@
 package pcd.lab08.actors.step4_multiple_behav_stash;
-import akka.actor.AbstractActorWithStash;
 
+import akka.actor.AbstractActorWithStash;
+import pcd.lab08.actors.step4_multiple_behav_stash.MsgProtocol.*;
 
 public class ActorWithBehavioursAndStashing extends AbstractActorWithStash {
 
@@ -15,9 +16,9 @@ public class ActorWithBehavioursAndStashing extends AbstractActorWithStash {
 	@Override
 	public Receive createReceive() {
 		return receiveBuilder()
-				.match(MsgProtocol.MsgZero.class,this::onMsgZero)
-				.match(MsgProtocol.MsgOne.class, (msg) -> { this.stash(); })
-				.match(MsgProtocol.MsgTwo.class, (msg) -> { this.stash(); })
+				.match(MsgZero.class,this::onMsgZero)
+				.match(MsgOne.class, (msg) -> { this.stash(); })
+				.match(MsgTwo.class, (msg) -> { this.stash(); })
 				.build();
 	}
 
