@@ -22,7 +22,8 @@ public class ActorWithBehaviours extends AbstractActor {
 	private void onMsgZero(MsgZero msg) {
 		log("msgZero - state: " + state);
 		state++;
-		this.getContext().become(receiverBehaviourA());
+		this.getContext().become(receiverBehaviourA()); /* it switches the current behaviour
+		with that one returned by receiverBehaviorA() */
 	}
 
 
@@ -37,7 +38,6 @@ public class ActorWithBehaviours extends AbstractActor {
 	private void onMsgOne(MsgOne msg) {
 		log("msgOne - state: " + state);	
 		state++;
-
 		this.getContext().become(receiverBehaviourB());
 	}
 	
@@ -51,14 +51,13 @@ public class ActorWithBehaviours extends AbstractActor {
 
 	private void onMsgTwo(MsgTwo msg) {
 		log("msgTwo - state: " + state);		
-		this.getContext().stop(this.getSelf());
+		this.getContext().stop(this.getSelf()); /* it stops the actor: this one won't
+		receive msgs anymore and it will switche its state in 'Terminated' */
 	}
 
 
 	private void log(String msg) {
-		System.out.println("[ActorWithBehaviour] " + msg);
+		System.out.println("Debug in [ActorWithBehaviours] ---> " + msg);
 	}
 
-
-	
 }
