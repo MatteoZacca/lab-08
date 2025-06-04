@@ -23,7 +23,12 @@ public class CounterActor extends AbstractActor {
 	}
 
 	private void onGetValueMsg(GetValueMsg msg) {
+		log("this.getSelf(): " + this.getSelf());
 		msg.replyTo().tell(new CounterValueMsg(count), this.getSelf());
+	}
+
+	private static void log(String msg) {
+		System.out.println("Debug in [CounterActor] ---> " + msg);
 	}
 	
 }

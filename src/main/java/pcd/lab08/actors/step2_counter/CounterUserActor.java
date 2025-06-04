@@ -14,8 +14,10 @@ public class CounterUserActor extends AbstractActor {
 	}
 
 	private void onStartMsg(CounterUserMsg msg) {
+		log("this.getSelf(): " + this.getSelf());
 		msg.counter().tell(new IncMsg(), this.getSelf());
 		msg.counter().tell(new IncMsg(), this.getSelf());
+		log("this.getContext().getSelf(): " + this.getContext().getSelf());
 		msg.counter().tell(new GetValueMsg(this.getContext().getSelf()), this.getSelf());
 	}
 
@@ -24,6 +26,6 @@ public class CounterUserActor extends AbstractActor {
 	}
 
 	private void log(String msg) {
-		System.out.println("[CounterUserActor] " + msg);
+		System.out.println("Debug in [CounterUserActor] ---> " + msg);
 	}
 }
