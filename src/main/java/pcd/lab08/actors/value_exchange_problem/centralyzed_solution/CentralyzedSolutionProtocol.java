@@ -8,5 +8,4 @@ public interface CentralyzedSolutionProtocol {
 
     // woker → CentralActor: "here is my randomly-picked value"
     public record ReportValue(int value, int numWorkers, ActorRef workerRef) {};
-
 }
