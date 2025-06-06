@@ -11,14 +11,21 @@ public class RunActorSystem {
 		
 		var peers = new ArrayList<ActorRef>();
 		int numPeers = 10;
-		
+
 		for (int i = 0; i < numPeers; i++) {
 			var peer =  system.actorOf(Props.create(PeerActor.class), "peer-" + i);
 			peers.add(peer);
 		}
 
 		for (var p: peers) {
+			log(p.path().toString());
 			p.tell(new BootMsg(peers), ActorRef.noSender());
 		}
   }
+
+  private static void log (String msg) {
+	  System.out.println("Debug in [RunActorSystem] ---> " + msg);
+  }
+
+
 }

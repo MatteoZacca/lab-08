@@ -28,16 +28,19 @@ public class PeerActor extends AbstractActor {
 		log("Booted - my value: " + myValue);
 		
 		numValuesReceived = 0;
-		minValue = maxValue = myValue;	
+		minValue = maxValue = myValue;
 		for (var peer: msg.peers()) {
 			if (!peer.equals(getSelf())) {
-				peer.tell(new ValueMsg(myValue), getSelf());
+				log(peer.path().name() + " != " + getSelf().path().name());
+				peer.tell(new ValueMsg(myValue, peer), getSelf());
 			}
 		}
 	}
 	
 	private void onValueMsg(ValueMsg msg) {
+		log("msg.value(): " + msg.value() + " by " + msg.peer().path().name() + " --- minValue: " + minValue + " --- maxValue: " + maxValue);
 		if (msg.value() < minValue) {
+			log(msg.peer().path().name() + " entered cause " + msg.value() + " < " + minValue);
 			minValue = msg.value();
 		} else if (msg.value() > maxValue) {
 			maxValue = msg.value();
@@ -50,7 +53,7 @@ public class PeerActor extends AbstractActor {
 	}
 	
 	private void log(String msg) {
-		System.out.println("[ " + System.currentTimeMillis() + " ][ " + this.getSelf().path().name() + " ] " + msg);
+		System.out.println("[" + this.getSelf().path().name() + "] ---> " + msg);
 	}
 	
 }

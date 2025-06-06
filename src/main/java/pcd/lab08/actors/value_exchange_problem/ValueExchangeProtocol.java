@@ -7,7 +7,7 @@ import akka.actor.ActorRef;
 public interface ValueExchangeProtocol {
 
 	public record BootMsg (List<ActorRef> peers) {}
-	public record ValueMsg (int value) {}
+	public record ValueMsg (int value, ActorRef peer) {}
 	
 	
 
